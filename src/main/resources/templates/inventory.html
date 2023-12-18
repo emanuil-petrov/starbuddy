@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StarBuddy</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <header th:replace="~{fragments/commons::nav}"></header>
+
+
+    <div class="position-absolute top-50 start-50 translate-middle text-white text-center border-0 h-75 custom ">
+        <p class="d-inline-flex gap-1">
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                    aria-expanded="false" aria-controls="collapseExample">
+                Button with data-bs-target
+            </button>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <div class="d-flex justify-content-between">
+                    <img id="destination" />
+                    <form  id="addArtifactForm"
+                            th:action="@{/add-artifact}"
+                           method="POST"
+                           th:object="${artifactDTO}">
+                        <select th:field="*{artifactSet}" class="form-select" aria-label="Default select example">
+                            <option th:value="Set" selected>Set</option>
+                            <option th:each="artifactSetName : ${artifactSetNames}"
+                                    th:value="${artifactSetName}"
+                                    th:text="${artifactSetName}"></option>
+                        </select>
+                        <select th:field="*{type}" class="form-select" aria-label="Default select example">
+                            <option th:value="Type" selected>Type</option>
+                            <option th:each="artifactType : ${T(com.starrail.starbuddy.model.ArtifactTypes).values()}"
+                                    th:value="${artifactType}"
+                                    th:text="${artifactType.getFormattedName()}"></option>
+                        </select>
+                        <select th:field="*{level}" class="form-select" aria-label="Default select example">
+                            <option th:value="Level" selected>Level</option>
+                            <option th:each="i : ${#numbers.sequence(1, 15)}" th:value="${i}" th:text="${i}"></option>
+                        </select>
+                        <select th:field="*{mainStatName}" id="mainStatSelect" class="form-select" aria-label="Default select example">
+                            <option th:value="Select" selected>Select</option>
+                            <option th:each="artifactStat : ${T(com.starrail.starbuddy.model.ArtifactStats).values()}"
+                                    th:value="${artifactStat}"
+                                    th:text="${artifactStat.getFormattedName()}"></option>
+                        </select>
+                        <div th:replace="~{fragments/selectFragment}"></div>
+                        <div th:replace="~{fragments/selectFragment}"></div>
+                        <div th:replace="~{fragments/selectFragment}"></div>
+                        <div th:replace="~{fragments/selectFragment}"></div>
+
+                        <input type="hidden" id="dataMapHidden" name="dataMap">
+
+                        <button type="submit" onclick="submit_sub_stats()">Add artifact</button>
+                    </form>
+                </div>
+                <button type="button" id="clickButton">Click me</button>
+                <form id="new_doc" method="post" enctype="multipart/form-data">
+                    <div class="actions">
+                        <button type="button" id="submitButton">Submit</button>
+                    </div>
+                    <input type="file" name="doc_attachment" id="doc_attachment" />
+                </form>
+            </div>
+        </div>
+        <div class="row row-cols-4">
+            <div th:each="artifact : ${userDetails.getArtifacts()}">
+                <div class="artifact-container border d-flex">
+                    <div>
+                        <div class="">
+                            <img th:src="@{'/images/characters/' + ${artifact.getArtifactType().getImageReference()}}" class="artifact" alt="...">
+                        </div>
+                        <div>
+                            <div>
+                                <p></p>
+                                <p>test2</p>
+                                <p>test3</p>
+                                <p>test4</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <p>Main stat</p>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/image_processing.js"></script>
+<script src="/js/stat_selection.js"></script>
+<script src ="/js/submit_sub_stats.js"></script>
+</body>
+</html>

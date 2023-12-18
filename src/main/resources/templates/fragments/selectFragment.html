@@ -1,0 +1,11 @@
+<div class="d-flex select-fragment subStatForm">
+    <select class="form-select subStatSelect" aria-label="Default select example">
+        <option selected>Select</option>
+        <option th:each="artifactStat : ${T(com.starrail.starbuddy.model.ArtifactStats).values()}"
+                th:value="${artifactStat}"
+                th:text="${artifactStat.getFormattedName()}"></option>
+    </select>
+    <input type="text" class="subStatValue">
+    <input type="hidden" class="selectedOptionHidden">
+    <input type="hidden" class="inputValueHidden">
+</div>

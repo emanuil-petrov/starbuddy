@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>StarBuddy</title>
+  <link rel="stylesheet" href="/css/reset-css.css"/>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+  <body>
+    <header th:replace="~{fragments/commons::nav}"></header>
+
+      <div class="container">
+
+        <h1 th:text="${character.name}"></h1>
+
+        <img th:src="@{/images/characters/{imageName}(imageName=${character.imageName})}" alt="Character Image">
+
+      </div>
+
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+</html>

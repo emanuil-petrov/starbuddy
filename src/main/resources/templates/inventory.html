@@ -69,23 +69,23 @@
             </div>
         </div>
         <div class="row row-cols-4">
-            <div th:each="artifact : ${userDetails.getArtifacts()}">
-                <div class="artifact-container border d-flex">
-                    <div>
-                        <div class="">
-                            <img th:src="@{'/images/characters/' + ${artifact.getArtifactType().getImageReference()}}" class="artifact" alt="...">
+            <div class="border" th:each="artifact : ${userDetails.getArtifacts()}">
+                <div class="artifact-container d-flex">
+                        <div>
+                            <img th:src="@{'/images/artifacts/' + ${artifact.getArtifactType().getImageReference()}}"
+                                 class="artifact" alt="...">
                         </div>
                         <div>
-                            <div>
-                                <p></p>
-                                <p>test2</p>
-                                <p>test3</p>
-                                <p>test4</p>
-                            </div>
+                            <p th:text="${artifact.getMainStatName()}">Main stat</p>
                         </div>
-
-                    </div>
-                    <p>Main stat</p>
+                </div>
+                <div>
+                    <table>
+                        <tr th:each="subStat : ${artifact.getSubStats()}">
+                            <td th:text="${subStat.getKey()}"></td>
+                            <td th:text="${subStat.getValue()}"></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

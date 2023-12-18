@@ -76,4 +76,8 @@ body {
     border: 1px solid black;
 }
 
+td :nth-child(odd) {
+    background: red;
+}
+
 

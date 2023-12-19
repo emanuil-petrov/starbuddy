@@ -1,7 +1,6 @@
 package com.starrail.starbuddy.init;
 
 import com.starrail.starbuddy.model.ArtifactTypes;
-import com.starrail.starbuddy.model.entities.Artifact;
 import com.starrail.starbuddy.model.entities.ArtifactSet;
 import com.starrail.starbuddy.model.entities.ArtifactType;
 import com.starrail.starbuddy.repo.ArtifactSetRepo;
@@ -91,5 +90,6 @@ public class ArtifactSetsInit implements CommandLineRunner {
 
             artifactTypeRepo.saveAll(artifactTypeList);
         }
+
     }
 }

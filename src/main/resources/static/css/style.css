@@ -76,8 +76,30 @@ body {
     border: 1px solid black;
 }
 
-td :nth-child(odd) {
-    background: red;
+.custom-table tbody tr {
+    border: 1px transparent;
 }
+
+.custom-table tbody tr td {
+    font-weight: bold;
+    color: #ffffffab;
+    border-radius: 2rem;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd)>* {
+    --bs-table-bg-type: #1F2326;
+    --bs-table-bg: transparent;
+}
+
+.table-striped>tbody>tr:nth-of-type(even)>* {
+    --bs-table-bg-type: #1f232659;
+    --bs-table-bg: transparent;
+}
+
+.artifact-item {
+    border: 1px solid white;
+    border-radius: 2rem;
+}
+
 
 

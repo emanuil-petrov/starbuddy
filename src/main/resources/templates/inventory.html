@@ -68,27 +68,33 @@
                 </form>
             </div>
         </div>
-        <div class="row row-cols-4">
-            <div class="border" th:each="artifact : ${userDetails.getArtifacts()}">
-                <div class="artifact-container d-flex">
+        <div class="container">
+            <div class="row row-cols-auto justify-content-center m-2">
+                <div class="artifact-item col-lg-3 col-md-4 col-sm-6 m-3" th:each="artifact : ${userDetails.getArtifacts()}">
+                    <div class="artifact-container d-flex">
                         <div>
                             <img th:src="@{'/images/artifacts/' + ${artifact.getArtifactType().getImageReference()}}"
-                                 class="artifact" alt="...">
+                                 class="artifact" alt="artifact-image">
                         </div>
                         <div>
                             <p th:text="${artifact.getMainStatName()}">Main stat</p>
+                            <p th:text="${#numbers.formatDecimal(artifact.getFormattedScore(), 2, 1)}">Score</p>
                         </div>
-                </div>
-                <div>
-                    <table>
-                        <tr th:each="subStat : ${artifact.getSubStats()}">
-                            <td th:text="${subStat.getKey()}"></td>
-                            <td th:text="${subStat.getValue()}"></td>
-                        </tr>
-                    </table>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped custom-table">
+                            <tbody>
+                            <tr th:each="subStat : ${artifact.getSubStats()}">
+                                <td style="text-align: left;"  th:text="${subStat.getKey()}"></td>
+                                <td style="text-align: center;" th:text="${subStat.getValue()}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 <script src="/js/bootstrap.bundle.min.js"></script>
 <script src="/js/image_processing.js"></script>

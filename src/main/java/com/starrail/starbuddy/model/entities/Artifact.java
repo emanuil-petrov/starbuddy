@@ -17,10 +17,10 @@ public class Artifact extends BaseEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToOne
+    @ManyToOne
     private ArtifactType artifactType;
 
-    @OneToOne
+    @ManyToOne
     private ArtifactSet artifactSet;
 
     @Column(name = "main_stat_name")
@@ -28,6 +28,10 @@ public class Artifact extends BaseEntity {
 
     @Column(name = "main_stat_value")
     private Double mainStatValue;
+
+
+    @Column(name = "artifact_score")
+    private Double artifactScore;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @MapKeyColumn(name = "name")
@@ -96,6 +100,18 @@ public class Artifact extends BaseEntity {
 
     public void setMainStatValue(Double mainStatValue) {
         this.mainStatValue = mainStatValue;
+    }
+
+    public Double getArtifactScore() {
+        return artifactScore;
+    }
+
+    public String getFormattedScore() {
+        return String.valueOf(artifactScore * 100);
+    }
+
+    public void setArtifactScore(Double artifactScore) {
+        this.artifactScore = artifactScore;
     }
 
     public Map<String, Double> getSubStats() {

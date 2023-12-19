@@ -14,6 +14,8 @@ public class Character extends BaseEntity {
     @Column
     private String imageName;
 
+
+
     public CharacterNames getName() {
         return name;
     }
